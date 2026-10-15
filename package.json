@@ -1,0 +1,14 @@
+{
+  "name": "omp-model-manager",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Local visual configuration manager for oh-my-pi model providers and roles",
+  "scripts": {
+    "start": "bun run server.js",
+    "test": "bun test"
+  },
+  "engines": {
+    "bun": ">=1.4.2"
+  }
+}

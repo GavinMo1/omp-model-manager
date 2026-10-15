@@ -1,0 +1,14 @@
+.role-toolbar{display:flex;flex-wrap:wrap;gap:10px;margin:22px 0 28px}
+.role-card{border:1px solid var(--line);background:#fafcff;border-radius:9px;padding:20px;min-width:0;display:flex;flex-direction:column;gap:15px}
+.role-card-head{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.role-card-head>div{display:flex;flex-wrap:wrap;align-items:center;gap:10px}
+.role-card-head strong{font-size:14px;font-weight:650}
+.role-card-head code{font-size:11px;color:#4873ad;background:#edf3fe;border-radius:4px;padding:4px 6px}
+.role-card>p{font-size:11px;color:var(--muted);margin:0;line-height:1.6}
+.role-card .field input,.role-card .field select{background:#fff}
+.role-card>small{line-height:1.7;margin-top:0}
+.effort-field{display:grid;grid-template-columns:1fr 130px;align-items:center;gap:8px}
+.effort-field small{grid-column:1/-1}
+.role-card select:disabled{background:#f1f5fb;color:#8c9aaf}
+.advanced .roles-grid{margin-top:18px}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}

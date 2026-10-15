@@ -1,0 +1,16 @@
+*.log
+node_modules/
+dist/
+coverage/
+.env
+.env.*
+!.env.example
+*.tmp
+*.tmp-*
+*.bak
+*.bak.*
+model-manager-backups/
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
