@@ -6,7 +6,8 @@
   "description": "Local visual configuration manager for oh-my-pi model providers and roles",
   "scripts": {
     "start": "bun run server.js",
-    "test": "bun test"
+    "test": "bun test",
+    "switch-deepseek": "bun run switch-all-to-deepseek.js"
   },
   "engines": {
     "bun": ">=1.4.2"

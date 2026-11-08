@@ -6,7 +6,8 @@ OMP 模型管理器：本地中文 Web 界面，编辑 oh-my-pi 的模型服务�
 ## 启动与验证
 
 - `bun run start`：前台启动；默认地址 http://127.0.0.1:18764/。
-- `bun run test`：临时目录中的配置与 HTTP 测试，不修改真实用户配置。
+- `bun run test`：临时目录中的配置与 HTTP 测试（当前 24 项），不修改真实用户配置。
+- `bun run switch-deepseek -- --dry-run`：预览 CLI 切换结果，不写文件。
 - `launch.ps1` / `stop.ps1`：Windows 后台启停，说明见 README。
 - 用户要求保持停止时，不为文档检查启动真实配置服务；测试服务可以运行并自动结束。
 
@@ -17,19 +18,20 @@ PowerShell 脚本需兼容 Windows PowerShell 5.1；无 BOM 的脚本使用 ASCI
 
 ## 文件与约定
 
-- `server.js`：HTTP 路由、访问校验和静态资源白名单。
-- `config-store.js`：配置校验、备份、冲突检查及写入。
-- `app.js` / `index.html` / CSS：界面；`role-selectors.js`：模型选择器处理。
+- `config-store.js`：配置校验、备份、冲突检查及写入；`TOUCHES` 显式列出每个 action 可写的文件。
+- `app.js` / `index.html` / CSS：界面；`role-selectors.js`：共享角色定义、档位枚举和模型选择器处理。
 - 配置写入行为变更需验证备份、字段保留、冲突及引用保护，并同步 README。
 - 新增前端模块或样式时同步 server.js 静态资源白名单。
-- 模型 ID 可能含冒号（如 cn:auto）；不要按任意冒号拆分推理档位。
+- 模型 ID 可能含冒号（如 cn:auto）；不要按任意冒号拆分推理档位。解析完整选择器时需要已知模型列表。
+- 角色档位有 9 个合法后缀（含 off/auto/inherit），全局 `defaultThinkingLevel` 只有 7 个（不含 off/inherit）。
+- `discovery` 只写 OMP 原生配置，不做连通性探测；`discovery: null`、空 apiKey、空字符串 limits 都会让 OMP 拒绝整份配置。
 - 真实配置位于用户目录，不属于源码仓库；不得把密钥或真实配置复制进测试、日志、文档或 Git。
 - 测试仅使用临时目录和假密钥；运行日志、备份和环境文件保持 Git 忽略。
-- 清理日志、分支、worktree 或其他残留前先列清单，获得用户确认后执行。
+- 清理日志、分支、worktree 或其他残留前先列清单，获得用户确认后执行（一次性 `.smoke-*` 验收目录除外）。
 
 ## 当前状态与后续边界
 
-已实现自定义服务、JSON 导入、15 个内置及自定义 Role；现有 9 项自动化测试。
-尚无浏览器自动化验收记录；后续界面变更应补充实际浏览器验证。
-暂不管理模型预设、项目级配置、agent 提示词及运行中 OMP 会话切换。
-当前无远端或部署流程；不要把本地测试通过表述为已发布。
+已实现自定义服务、JSON 导入、16 个内置及自定义 Role、自动发现开关、批量聊天角色、最小预设、全局思考档位；现有 24 项自动化测试。
+浏览器交互验收已覆盖自动发现往返、批量保存、预设应用；尚无持续浏览器回归测试。
+暂不管理项目级配置、agent 提示词及运行中 OMP 会话切换。
+远端仓库为 GitHub `GavinMo1/omp-model-manager`；无部署流程，不要把本地测试通过表述为已发布。
